@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  TestTask
-//
-//  Created by Mike on 14.05.2020.
-//  Copyright © 2020 projectcore. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
