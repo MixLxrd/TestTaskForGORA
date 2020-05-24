@@ -13,6 +13,16 @@ class PhotosCollectionViewController: UICollectionViewController {
         navigationItem.title = albumTitle
 
     }
+    /*
+     
+    попробовать реализовать кеш картинок
+     
+    let imageCache = NSCache<NSString, UIImage>()
+    
+    func downloadImage(url: URL, completion: @escaping (UIImage)?) -> Void) {
+        
+    }
+    */
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
