@@ -23,22 +23,23 @@ var photos : [Photos] = []
 
 func parsePhotos() {
     let urlString = "https://jsonplaceholder.typicode.com/photos"
-    let semaphore = DispatchSemaphore(value: 0)
+   // let semaphore = DispatchSemaphore(value: 0)
+    DispatchQueue.main.async {
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, responce, error) in
+            guard let data = data else { return }
+            guard error == nil else { return }
+            
+            do {
+                photos = try JSONDecoder().decode([Photos].self, from: data)
+               // print(photos)
+            } catch let error {
+                print(error)
+            }
+         //   semaphore.signal()
+        }.resume()
+    }
     
-    guard let url = URL(string: urlString) else { return }
-    URLSession.shared.dataTask(with: url) { (data, responce, error) in
-        guard let data = data else { return }
-        guard error == nil else { return }
-        
-        do {
-            photos = try JSONDecoder().decode([Photos].self, from: data)
-           // print(photos)
-        } catch let error {
-            print(error)
-        }
-        
-        semaphore.signal()
-    }.resume()
     
 }
 

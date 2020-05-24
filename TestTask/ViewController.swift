@@ -19,8 +19,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         parseUsers()
         parseAlbums()
         parsePhotos()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         // tableView.isEditing = true
         
 

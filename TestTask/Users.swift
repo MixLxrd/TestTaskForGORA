@@ -38,21 +38,23 @@ func parseUsers() {
     let urlString = "http://jsonplaceholder.typicode.com/users"
     
     let semaphore = DispatchSemaphore(value: 0)
-    
-    guard let url = URL(string: urlString) else { return }
-    URLSession.shared.dataTask(with: url) { (data, responce, error) in
-        guard let data = data else { return }
-        guard error == nil else { return }
-        
-        do {
-            users = try JSONDecoder().decode([Users].self, from: data)
-            //print(users)
-        } catch let error {
-            print(error)
-        }
-        
-        semaphore.signal()
+   
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, responce, error) in
+            guard let data = data else { return }
+            guard error == nil else { return }
+            
+            do {
+                users = try JSONDecoder().decode([Users].self, from: data)
+                //print(users)
+            } catch let error {
+                print(error)
+            }
+            semaphore.signal()
     }.resume()
-    
     _ = semaphore.wait(wallTimeout: .distantFuture)
+
 }
+    
+    
+
